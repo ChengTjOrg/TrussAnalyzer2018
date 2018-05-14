@@ -7,13 +7,6 @@ Created on Mon May 14 17:48:43 2018
 
 #pre display in unit
 
-'''
-问题：
-1.程序中有大段重复的相似语句，不知道有没有办法优化
-2.注释还没有认真写好
-3.支座的方向是单一的，可能会出现重叠遮挡的问题，目前暂时采用了不同颜色作为解决方案，但是这个方案还不够好
-'''
-
 #import numpy as np
 from __future__ import division
 import matplotlib.pyplot as plt
@@ -53,21 +46,21 @@ class Support:
         pass
     def horizontal(self):
         #仅有水平支座，向左画
-        x=[self.a,self.a-0.4]
+        x=[self.a,self.a-0.6]
         y=[self.b,self.b]
         plt.scatter(x[1],y[1],c='w',marker='o',s=100,edgecolors='b',linewidths=2.5,zorder=100)
         plt.plot(x,y,c='b',linewidth=4,zorder=1)
-        x1=[self.a-0.4,self.a-0.4]
+        x1=[self.a-0.6,self.a-0.6]
         y1=[self.b+0.4,self.b-0.4]
         plt.plot(x1,y1,c='b',linewidth=4,zorder=1)
     def vertical(self):
         #仅有竖直支座，向下画
         x=[self.a,self.a]
-        y=[self.b,self.b-0.4]
+        y=[self.b,self.b-0.6]
         plt.scatter(x[1],y[1],c='w',marker='o',s=100,edgecolors='b',linewidths=2.5,zorder=100)
         plt.plot(x,y,c='b',linewidth=4,zorder=1)
         x1=[self.a-0.4,self.a+0.4]
-        y1=[self.b-0.4,self.b-0.4]
+        y1=[self.b-0.6,self.b-0.6]
         plt.plot(x1,y1,c='b',linewidth=4,zorder=1)
     def both(self):
         #有两个方向的支座
@@ -83,7 +76,15 @@ pud=PreUnitDisplay(5,10,12,4,1,3)
 pud.display()     
        
 
-        
+'''
+问题：
+1.程序中有大段重复的相似语句，不知道有没有办法优化
+2.注释还没有认真写好
+3.支座的方向是单一的，可能会出现重叠遮挡的问题，目前暂时采用了不同颜色作为解决方案，但是这个方案还不够好
+'''
+
+
+    
 '''
 弃用代码：
 def supports(argument):
