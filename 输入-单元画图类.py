@@ -53,21 +53,21 @@ class Support:
         pass
     def horizontal(self):
         #仅有水平支座，向左画
-        x=[self.a,self.a-0.5]
+        x=[self.a,self.a-0.4]
         y=[self.b,self.b]
         plt.scatter(x[1],y[1],c='w',marker='o',s=100,edgecolors='b',linewidths=2.5,zorder=100)
         plt.plot(x,y,c='b',linewidth=4,zorder=1)
-        x1=[self.a-0.5,self.a-0.5]
-        y1=[self.b+0.5,self.b-0.5]
+        x1=[self.a-0.4,self.a-0.4]
+        y1=[self.b+0.4,self.b-0.4]
         plt.plot(x1,y1,c='b',linewidth=4,zorder=1)
     def vertical(self):
         #仅有竖直支座，向下画
         x=[self.a,self.a]
-        y=[self.b,self.b-0.5]
+        y=[self.b,self.b-0.4]
         plt.scatter(x[1],y[1],c='w',marker='o',s=100,edgecolors='b',linewidths=2.5,zorder=100)
         plt.plot(x,y,c='b',linewidth=4,zorder=1)
-        x1=[self.a-0.5,self.a+0.5]
-        y1=[self.b-0.5,self.b-0.5]
+        x1=[self.a-0.4,self.a+0.4]
+        y1=[self.b-0.4,self.b-0.4]
         plt.plot(x1,y1,c='b',linewidth=4,zorder=1)
     def both(self):
         #有两个方向的支座
