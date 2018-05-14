@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 
 class PreUnitDisplay:
-    def __init__(self,a1,b1,a2,b2,s1,s2,lx,ly,tc,pc,sc):#依次为x坐标/y坐标/支座情况/画布大小,lx,ly只需全局输入一次
+    def __init__(self,a1,b1,a2,b2,s1,s2,lx,ly,tc,pc,sc):#依次为x坐标/y坐标/支座情况/画布大小/构件颜色,lx,ly只需全局输入一次
         self.a1=a1
         self.b1=b1
         self.a2=a2
