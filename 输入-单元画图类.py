@@ -51,8 +51,8 @@ class Support:
         self.a=a
         self.b=b
         self.l=l
-        self.c1=1/15#支座长短系数1
-        self.c2=1/30#支座长短系数2（大地）
+        self.c1=1/25#支座长短系数1
+        self.c2=1/50#支座长短系数2（大地）
         self.sc=sc
     def none(self):
         pass
