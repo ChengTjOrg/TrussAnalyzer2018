@@ -23,6 +23,9 @@ class PreUnitDisplay:
         self.lx=lx
         self.ly=ly
         self.l=min(self.lx,self.ly)
+        self.c1=1#杆端圆圈大小系数
+        self.c2=1/20#杆端圆圈线宽系数
+        self.c3=0.1#杆线宽系数
     def display(self):
         plt.xlim(0,self.lx)
         plt.ylim(0,self.ly)
@@ -31,9 +34,9 @@ class PreUnitDisplay:
         y=[self.b1,self.b2]
         '''plt.plot(x[0], y[0], 'C3', zorder=1,lw=3)#zorder用来标记显示顺序（层次）
         plt.plot(x[1], y[1], 'C3', zorder=1,lw=3)'''
-        plt.scatter(x,y,c='w',marker='o', s=self.l,edgecolors='k',linewidths=self.l/20, zorder=100)#s是点大小
+        plt.scatter(x,y,c='w',marker='o', s=self.c1*self.l,edgecolors='k',linewidths=self.c2*self.l, zorder=100)#s是点大小
         #画杆
-        plt.plot(x,y,c='r',linewidth=self.l/10,zorder=1)
+        plt.plot(x,y,c='r',linewidth=self.c3*self.l,zorder=1)
         #画支座
         sp1=Support(self.s1,self.a1,self.b1,self.l)
         sp1.display()
@@ -50,7 +53,7 @@ class Support:
         self.l=l
         self.c1=1/15#支座长短系数1
         self.c2=1/30#支座长短系数2（大地）
-        self.c3=0.9#支座圆圈大小s系数
+        self.c3=1#支座圆圈大小s系数
         self.c4=1/25#支座圆圈线宽系数
         self.c5=1/20#支座线条宽度系数
     def none(self):
