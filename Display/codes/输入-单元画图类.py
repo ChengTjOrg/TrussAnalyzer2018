@@ -26,8 +26,6 @@ class PreUnitDisplay:
         self.pc=pc#端点颜色
         self.sc=sc#支座颜色
     def display(self):
-        plt.xlim(0,self.l)
-        plt.ylim(0,self.l)
         plt.figure(figsize=(self.l,self.l))
         #画两端结点
         x=[self.a1,self.a2]
