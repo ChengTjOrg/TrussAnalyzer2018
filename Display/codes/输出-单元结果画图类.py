@@ -35,7 +35,8 @@ class PostUnitDisplay:
         self.c2=0.06
         self.c3=0.09
         self.c4=0.02
-        self.c5=2.5#数字大小系数
+        self.c5=5#数字大小系数
+        self.trusslength=math.sqrt((a2-a1)**2+(b2-b1)**2)
     def display(self):
         #plt.figure()
         plt.figure(figsize=(self.l,self.l))
@@ -63,27 +64,7 @@ class PostUnitDisplay:
                 angle=90
         else:
             angle=math.atan((self.b2-self.b1)/(self.a2-self.a1))/(2*math.pi)*360
-        #将[-90,90]的角变为[0,90]，if-elif可以仿照输入的代码改成operation的形式
-        if self.b2-self.b1>=0 and self.a2-self.a1>=0:
-            trans_angle=angle
-            plt.text((l1[0]+l2[0])/2-self.c1*self.l*math.cos(trans_angle)-self.c2*self.l*math.sin(trans_angle),
-                 (l1[1]+l2[1])/2-self.c3*self.l*math.sin(trans_angle)+self.c4*self.l*math.cos(trans_angle),
-                 str(self.result),fontsize=self.c5*self.l,rotation=angle, rotation_mode='anchor',zorder=1000)
-        elif self.b2-self.b1>=0 and self.a2-self.a1<0:
-            trans_angle=-angle
-            plt.text((l1[0]+l2[0])/2-self.c1*self.l*math.cos(trans_angle)+self.c2*self.l*math.sin(trans_angle),
-                 (l1[1]+l2[1])/2+self.c3*self.l*math.sin(trans_angle)+self.c4*self.l*math.cos(trans_angle),
-                 str(self.result),fontsize=self.c5*self.l,rotation=angle, rotation_mode='anchor',zorder=1000)
-        elif self.b2-self.b1<0 and self.a2-self.a1<=0:
-            trans_angle=angle
-            plt.text((l1[0]+l2[0])/2-self.c1*self.l*math.cos(trans_angle)-self.c2*self.l*math.sin(trans_angle),
-                 (l1[1]+l2[1])/2-self.c3*self.l*math.sin(trans_angle)+self.c4*self.l*math.cos(trans_angle),
-                 str(self.result),fontsize=self.c5*self.l,rotation=angle, rotation_mode='anchor',zorder=1000)
-        elif self.b2-self.b1<0 and self.a2-self.a1>=0:
-            trans_angle=-angle
-            plt.text((l1[0]+l2[0])/2-self.c1*self.l*math.cos(trans_angle)+self.c2*self.l*math.sin(trans_angle),
-                 (l1[1]+l2[1])/2+self.c3*self.l*math.sin(trans_angle)+self.c4*self.l*math.cos(trans_angle),
-                 str(self.result),fontsize=self.c5*self.l,rotation=angle, rotation_mode='anchor',zorder=1000)
+        plt.text((l1[0]+l2[0])/2,(l1[1]+l2[1])/2,str(self.result),fontsize=self.c5*self.trusslength,rotation=angle,rotation_mode='anchor',zorder=1000)
         #plt.tight_layout()
         plt.savefig('path\\fig.png',dpi=600)
         plt.show()
