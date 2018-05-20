@@ -1,9 +1,12 @@
 #!/usr/bin/env python
+"""
+@author: 2Fzzzzz
+"""
 
 import wx
 import pre_process as pp
 
-class TrussAnalyzer(wx.Frame):
+class TrussAnalyzer(wx.Frame):   #主界面
 
         def __init__(self, parent, id):
                 wx.Frame.__init__(self, parent, id, 'TrussAnalyzer',size=(500, 300))
@@ -83,13 +86,13 @@ class TrussAnalyzer(wx.Frame):
                 startButton = wx.Button(panel, wx.NewId(), "START", pos=(350, 220))
                 self.Bind(wx.EVT_BUTTON, self.OnStart, startButton)
                 
-                f = open('number.txt','w')
+                f = open('number.txt','w')     #覆盖原文件内容
                 f.close()
 
                 
-        def OnCloseWindow(self,event):
+        def OnCloseWindow(self,event):    #关闭窗口
             self.Destroy()
-        def OnSave(self,event):
+        def OnSave(self,event):         #保存杆件
             numbers = [0,int(self.xpos1.GetValue()),int(self.ypos1.GetValue()),int(self.xconstraint1.GetValue()),
                        int(self.yconstraint1.GetValue()),int(self.xforce1.GetValue()),int(self.yforce1.GetValue()),
                        0,int(self.xpos2.GetValue()),int(self.ypos2.GetValue()),int(self.xconstraint2.GetValue()),
@@ -103,7 +106,7 @@ class TrussAnalyzer(wx.Frame):
             f.close()
             self.OnReset()
             self.OnSuccess()
-        def OnClear(self,event):
+        def OnClear(self,event):     #清除输入内容
             self.xpos1.SetValue("")
             self.ypos1.SetValue("")
             self.xpos2.SetValue("")
@@ -117,7 +120,7 @@ class TrussAnalyzer(wx.Frame):
             self.yconstraint1.SetValue(0)
             self.xconstraint2.SetValue(0)
             self.yconstraint2.SetValue(0)
-        def OnReset(self):
+        def OnReset(self):         #清除输入内容
             self.xpos1.SetValue("")
             self.ypos1.SetValue("")
             self.xpos2.SetValue("")
@@ -131,19 +134,19 @@ class TrussAnalyzer(wx.Frame):
             self.yconstraint1.SetValue(0)
             self.xconstraint2.SetValue(0)
             self.yconstraint2.SetValue(0)
-        def OnSuccess(self):
+        def OnSuccess(self):      #弹出成功窗口
             dlg = wx.MessageDialog(None, "Success!",'Success',wx.OK)
             dlg.ShowModal()
             dlg.Destroy()
-        def OnStart(self,event):
+        def OnStart(self,event):    #主程序启动
             pp.preprocess()
             frame = Result(parent=None, id=-1)
             frame.Show()
             
-class Result(wx.Frame):
+class Result(wx.Frame):      #结果显示界面
 
-        def __init__(self, parent, id):
-            image = wx.Image('out.jpg', wx.BITMAP_TYPE_JPEG)
+        def __init__(self, parent, id):    #图片显示
+            image = wx.Image('out.PNG', wx.BITMAP_TYPE_PNG)
             temp = image.ConvertToBitmap()
             size = temp.GetWidth(), temp.GetHeight()
             wx.Frame.__init__(self, parent, id, 'Result',size=size)
@@ -152,7 +155,7 @@ class Result(wx.Frame):
             self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
             self.bmp = wx.StaticBitmap(panel,-1,temp,pos=(0, 0),size=size)  
         
-        def OnCloseWindow(self,event):
+        def OnCloseWindow(self,event):    #关闭窗口
             self.Destroy()
 
 if __name__ == '__main__':
