@@ -13,7 +13,6 @@ def preprocess():
     f = open('number.txt','r')
     number = numpy.loadtxt('number.txt') 
     f.close()
-    print (number)
 
     myList = number[:,:3]
     myList2 = number[:,7:10]
@@ -38,6 +37,5 @@ def preprocess():
                 number[i][7] = l [j][0]
 
     number = number.tolist()
-    print(number)
 
     numpy.savetxt("temp.txt", number)
