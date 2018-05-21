@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import math
 
         
-class PostUnitDisplay:
+class UnitPostProcess:
     def __init__(self,a1,b1,a2,b2,s1,s2,l,tc,pc,sc,result):
         self.a1=a1
         self.b1=b1
@@ -68,13 +68,15 @@ class PostUnitDisplay:
         plt.text((l1[0]+l2[0])/2,(l1[1]+l2[1])/2,str(self.result),fontsize=self.c5*self.l,rotation=angle,rotation_mode='anchor',zorder=1000)
         #plt.tight_layout()
     def savefig(self):
+        #fig = plt.gcf()
+        #fig.set_size_inches(20,20)
         plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\后处理\\fig.png',dpi=600)
         plt.show()
 
 
-pud=PostUnitDisplay(1.8,1.4,6.8,6.4,3,1,20.0,'k','k','b',48.6667)
+pud=UnitPostProcess(1.8,1.4,6.8,6.4,3,1,20.0,'k','k','b',48.6667)
 pud.setfig()
 pud.plot()
-pud=PostUnitDisplay(6.8,6.4,16.8,6.4,0,3,20.0,'k','k','b',23.3333)
+pud=UnitPostProcess(6.8,6.4,16.8,6.4,0,3,20.0,'k','k','b',23.3333)
 pud.plot()
 pud.savefig()
