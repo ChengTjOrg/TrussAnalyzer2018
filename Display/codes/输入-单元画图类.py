@@ -25,8 +25,11 @@ class PreUnitDisplay:
         self.tc=tc#杆颜色
         self.pc=pc#端点颜色
         self.sc=sc#支座颜色
-    def display(self):
+    def set(self):
         plt.figure(figsize=(self.l,self.l))
+        plt.xlim(0,self.l)
+        plt.ylim(0,self.l)
+    def display(self):
         #画两端结点
         x=[self.a1,self.a2]
         y=[self.b1,self.b2]
@@ -41,6 +44,9 @@ class PreUnitDisplay:
         sp2=Support(self.s2,self.a2,self.b2,self.l,self.sc)
         sp2.display()
         plt.tight_layout()
+    def savefig(self):
+        plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\前处理\\fig.png',dpi=600)
+        plt.show()
 
 
 class Support:
@@ -82,8 +88,10 @@ class Support:
     '''要注意支座图像的放置方向和大小不要与杆件重叠!!'''
    
 
-pud=PreUnitDisplay(2.5,1.0,4.0,2.2,3,1,5.0,'black','black','black')
-pud.display()     
+pud=PreUnitDisplay(2.5,1.0,4.0,2.2,3,1,5.0,'k','k','b')
+pud.set()
+pud.display()
+pud.savefig()     
        
 
 '''
@@ -92,16 +100,3 @@ pud.display()
 2.注释还没有认真写好
 3.支座的方向是单一的，可能会出现重叠遮挡的问题，目前暂时采用了不同颜色作为解决方案，但是这个方案还不够好
 '''
-
-
-    
-'''
-弃用代码：
-def supports(argument):
-    switcher={
-        0:pass
-        1:pass#仅有水平支座
-        2:pass#仅有竖直支座
-        3:pass#有两个方向的支座
-        #要注意支座图像的放置方向和大小不要与杆件重叠!!
-            }'''
