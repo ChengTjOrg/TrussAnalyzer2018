@@ -13,7 +13,7 @@ def delrepeat(a):   #删除重复节点
     return ll2
 
 def preprocess():    #主程序
-    f = open('number.txt','r')
+    f = open('temp.txt','r')
     number = numpy.loadtxt('number.txt') 
     f.close()         #载入数据
     
