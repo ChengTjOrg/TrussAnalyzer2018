@@ -209,4 +209,4 @@ def analyzer():
         s_list=[truss_list[i].node1.number,truss_list[i].node1.x,truss_list[i].node1.y,truss_list[i].node1.constraint_x,truss_list[i].node1.constraint_y,truss_list[i].node1.fx,truss_list[i].node1.fy,truss_list[i].node2.number,truss_list[i].node2.x,truss_list[i].node2.y,truss_list[i].node2.constraint_x,truss_list[i].node2.constraint_y,truss_list[i].node2.fx,truss_list[i].node2.fy,truss_list[i].EA,truss_list[i].FN,truss_list[i].node1.displacement[0],truss_list[i].node1.displacement[1],truss_list[i].node2.displacement[0],truss_list[i].node2.displacement[1]]
         solve_list.append(s_list)
     
-    np.savetxt("test.txt",solve_list, fmt='%f', delimiter=' ',newline='\r\n')
+    np.savetxt("temp.txt",solve_list, fmt='%f', delimiter=' ',newline='\r\n')
