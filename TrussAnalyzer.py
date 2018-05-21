@@ -4,7 +4,7 @@
 """
 
 import wx
-import pre_process as pp
+import preprocess as pp
 import analyzer as ana
 
 class TrussAnalyzer(wx.Frame):   #主界面
