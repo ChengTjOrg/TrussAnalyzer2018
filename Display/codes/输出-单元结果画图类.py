@@ -37,15 +37,16 @@ class PostUnitDisplay:
         self.c4=0.02
         self.c5=5#数字大小系数
         self.trusslength=math.sqrt((a2-a1)**2+(b2-b1)**2)
-    def display(self):
+    def set(self):
         #plt.figure()
         plt.figure(figsize=(self.l,self.l))
         plt.xlim(0,self.l)
         plt.ylim(0,self.l)
+    def plot(self):    
         #画两端结点
         x=[self.a1,self.a2]
         y=[self.b1,self.b2]
-        plt.scatter(x,y,c='w',marker='o', s=60,edgecolors=self.pc,linewidths=3, zorder=100)#s是点大小
+        plt.scatter(x,y,c='w',marker='o', s=10*self.l,edgecolors=self.pc,linewidths=3, zorder=100)#s是点大小
         #画杆
         plt.plot(x,y,c=self.tc,linewidth=5,zorder=1)
         #画支座
@@ -66,9 +67,12 @@ class PostUnitDisplay:
             angle=math.atan((self.b2-self.b1)/(self.a2-self.a1))/(2*math.pi)*360
         plt.text((l1[0]+l2[0])/2,(l1[1]+l2[1])/2,str(self.result),fontsize=self.c5*self.trusslength,rotation=angle,rotation_mode='anchor',zorder=1000)
         #plt.tight_layout()
-        plt.savefig('path\\fig.png',dpi=600)
+    def savefig(self):
+        plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\后处理\\fig.png',dpi=600)
         plt.show()
 
 
-pud=PostUnitDisplay(1.8,1.4,6.8,6.4,3,1,8.0,'k','k','b',48.6667)
-pud.display()
+pud=PostUnitDisplay(1.8,1.4,6.8,6.4,3,1,20.0,'k','k','b',48.6667)
+pud.set()
+pud.plot()
+pud.savefig()
