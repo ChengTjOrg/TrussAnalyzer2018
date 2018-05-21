@@ -37,7 +37,7 @@ class PostUnitDisplay:
         self.c4=0.02
         self.c5=1.2#数字大小系数
         self.trusslength=math.sqrt((a2-a1)**2+(b2-b1)**2)
-    def set(self):
+    def setfig(self):
         #plt.figure()
         plt.figure(figsize=(self.l,self.l))
         plt.xlim(0,self.l)
@@ -73,7 +73,7 @@ class PostUnitDisplay:
 
 
 pud=PostUnitDisplay(1.8,1.4,6.8,6.4,3,1,20.0,'k','k','b',48.6667)
-pud.set()
+pud.setfig()
 pud.plot()
 pud=PostUnitDisplay(6.8,6.4,16.8,6.4,0,3,20.0,'k','k','b',23.3333)
 pud.plot()
