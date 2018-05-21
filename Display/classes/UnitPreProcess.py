@@ -35,8 +35,6 @@ class UnitPreProcess:
         #画两端结点
         x=[self.a1,self.a2]
         y=[self.b1,self.b2]
-        '''plt.plot(x[0], y[0], 'C3', zorder=1,lw=3)#zorder用来标记显示顺序（层次）
-        plt.plot(x[1], y[1], 'C3', zorder=1,lw=3)'''
         plt.scatter(x,y,c='w',marker='o', s=60,edgecolors=self.pc,linewidths=3, zorder=100)#s是点大小
         #画杆
         plt.plot(x,y,c=self.tc,linewidth=5,zorder=1)
