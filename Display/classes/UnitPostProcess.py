@@ -15,7 +15,7 @@ import math
 
         
 class UnitPostProcess:
-    def __init__(self,a1,b1,a2,b2,sx1,sy1,sx2,sy2,l,tc,pc,sc,result):
+    def __init__(self,a1,b1,a2,b2,sx1,sy1,sx2,sy2,l,result):
         self.a1=a1
         self.b1=b1
         self.a2=a2
@@ -25,9 +25,9 @@ class UnitPostProcess:
         self.sx2=sx2
         self.sy2=sy2
         self.l=l
-        self.tc=tc
-        self.pc=pc
-        self.sc=sc
+        self.tc='k'
+        self.pc='k'
+        self.sc='b'
         self.result=result
         self.x=[a1,a2]
         self.x=np.array(self.x)
@@ -76,9 +76,9 @@ class UnitPostProcess:
         plt.show()
 
 
-pud=UnitPostProcess(1.8,1.4,6.8,6.4,1,1,1,0,20.0,'k','k','b',48.6667)
+pud=UnitPostProcess(1.8,1.4,6.8,6.4,1,1,1,0,20.0,48.6667)
 pud.setfig()
 pud.plot()
-pud=UnitPostProcess(6.8,6.4,18.8,6.4,0,0,1,1,20.0,'k','k','b',23.3333)
+pud=UnitPostProcess(6.8,6.4,18.8,6.4,0,0,1,1,20.0,23.3333)
 pud.plot()
 pud.savefig()
