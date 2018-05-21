@@ -87,7 +87,7 @@ class TrussAnalyzer(wx.Frame):   #主界面
                 startButton = wx.Button(panel, wx.NewId(), "START", pos=(350, 220))
                 self.Bind(wx.EVT_BUTTON, self.OnStart, startButton)
                 
-                f = open('number.txt','w')     #覆盖原文件内容
+                f = open('temp.txt','w')     #覆盖原文件内容
                 f.close()
 
                 
@@ -99,7 +99,7 @@ class TrussAnalyzer(wx.Frame):   #主界面
                        0,self.xpos2.GetValue(),self.ypos2.GetValue(),int(self.xconstraint2.GetValue()),
                        int(self.yconstraint2.GetValue()),self.xforce2.GetValue(),self.yforce2.GetValue(),
                        self.ea.GetValue()]
-            f = open('number.txt','a')
+            f = open('temp.txt','a')
             for e in numbers:
                 f.write(str(e))
                 f.write(' ')
