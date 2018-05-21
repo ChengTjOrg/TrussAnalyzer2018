@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import Support
 
 class UnitPreProcess:
-    def __init__(self,a1,b1,a2,b2,sx1,sy1,sx2,sy2,l,tc,pc,sc):#依次为x坐标/y坐标/支座情况/画布大小/构件颜色,lx,ly只需全局输入一次
+    def __init__(self,a1,b1,a2,b2,sx1,sy1,sx2,sy2,l):#依次为x坐标/y坐标/支座情况/画布大小/构件颜色,lx,ly只需全局输入一次
         self.a1=a1
         self.b1=b1
         self.a2=a2
@@ -24,9 +24,9 @@ class UnitPreProcess:
         self.sx2=sx2
         self.sy2=sy2
         self.l=l
-        self.tc=tc#杆颜色
-        self.pc=pc#端点颜色
-        self.sc=sc#支座颜色
+        self.tc='k'#杆颜色
+        self.pc='k'#端点颜色
+        self.sc='b'#支座颜色
     def setfig(self):
         plt.figure(figsize=(self.l,self.l))
         plt.xlim(0,self.l)
@@ -51,7 +51,7 @@ class UnitPreProcess:
         plt.show()
 
 
-upp=UnitPreProcess(2.5,1.0,4.0,2.2,1,1,1,0,5.0,'k','k','b')
+upp=UnitPreProcess(2.5,1.0,4.0,2.2,1,1,1,0,5.0)
 upp.setfig()
 upp.plot()
 upp.savefig()     
