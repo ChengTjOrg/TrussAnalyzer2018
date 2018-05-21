@@ -15,13 +15,15 @@ import math
 
         
 class UnitPostProcess:
-    def __init__(self,a1,b1,a2,b2,s1,s2,l,tc,pc,sc,result):
+    def __init__(self,a1,b1,a2,b2,sx1,sy1,sx2,sy2,l,tc,pc,sc,result):
         self.a1=a1
         self.b1=b1
         self.a2=a2
         self.b2=b2
-        self.s1=s1
-        self.s2=s2
+        self.sx1=sx1
+        self.sy1=sy1
+        self.sx2=sx2
+        self.sy2=sy2
         self.l=l
         self.tc=tc
         self.pc=pc
@@ -50,9 +52,9 @@ class UnitPostProcess:
         #画杆
         plt.plot(x,y,c=self.tc,linewidth=5,zorder=1)
         #画支座
-        sp1=Support.Support(self.s1,self.a1,self.b1,self.l,self.sc)
+        sp1=Support.Support(self.sx1,self.sy1,self.a1,self.b1,self.l,self.sc)
         sp1.display()
-        sp2=Support.Support(self.s2,self.a2,self.b2,self.l,self.sc)
+        sp2=Support.Support(self.sx2,self.sy2,self.a2,self.b2,self.l,self.sc)
         sp2.display()
         #标数据
         l1 = np.array([self.a1,self.b1])
@@ -74,9 +76,9 @@ class UnitPostProcess:
         plt.show()
 
 
-pud=UnitPostProcess(1.8,1.4,6.8,6.4,3,1,20.0,'k','k','b',48.6667)
+pud=UnitPostProcess(1.8,1.4,6.8,6.4,1,1,1,0,20.0,'k','k','b',48.6667)
 pud.setfig()
 pud.plot()
-pud=UnitPostProcess(6.8,6.4,16.8,6.4,0,3,20.0,'k','k','b',23.3333)
+pud=UnitPostProcess(6.8,6.4,18.8,6.4,0,0,1,1,20.0,'k','k','b',23.3333)
 pud.plot()
 pud.savefig()
