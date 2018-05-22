@@ -1,19 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 22 16:07:35 2018
-
-@author: Nicole
-"""
-
-
-#post display
-
 from __future__ import division
 import Support
 import numpy as np
 import matplotlib.pyplot as plt
 import math
-
         
 class UnitPostProcess:
     def __init__(self,a1,b1,a2,b2,sx1,sy1,sx2,sy2,fx1,fy1,fx2,fy2,l,result):
@@ -81,14 +70,5 @@ class UnitPostProcess:
     def savefig(self):
         #fig = plt.gcf()
         #fig.set_size_inches(20,20)
-        plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\后处理\\fig.png',dpi=600)
+        plt.savefig('fig.png',dpi=600)
         plt.show()
-
-'''
-pud=UnitPostProcess(1.8,1.4,3.4,3.2,1,1,1,0,8.0,48.6667)
-pud.setfig()
-pud.plot()
-pud=UnitPostProcess(3.4,3.2,7.4,3.2,0,0,1,1,8.0,23.3333)
-pud.plot()
-pud.savefig()
-'''
