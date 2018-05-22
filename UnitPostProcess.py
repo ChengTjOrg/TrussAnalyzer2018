@@ -73,7 +73,7 @@ class UnitPostProcess:
     def savefig(self):
         #fig = plt.gcf()
         #fig.set_size_inches(20,20)
-        plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\后处理\\fig.png',dpi=600)
+        plt.savefig('fig.png',dpi=600)
         plt.show()
 
 '''
