@@ -146,7 +146,7 @@ def analyzer():
     truss_list=[]   #单元列表
     c=len(nodexy_list)
     K=np.zeros([c,c])        #计算总刚度矩阵
-    for i in range(int(c/2)): 
+    for i in range(h): 
         n1=node_list[trussnode_list[2*i]-1]
         n2=node_list[trussnode_list[2*i+1]-1]
         t=Truss(n1,n2)
