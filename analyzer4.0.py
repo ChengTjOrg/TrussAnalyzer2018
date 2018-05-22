@@ -96,7 +96,7 @@ class Truss:
                     elif i==3:
                         Ke[2*self.node2.number-1,2*self.node2.number-1]+=self.ke[i,j]
         self.Ke=Ke
-     def calculateFN(self,F):
+    def calculateFN(self,F):
         if (self.node2.x-self.node1.x) ==0:
             sita=3.14159/2.0
         else:
