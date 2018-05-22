@@ -45,15 +45,15 @@ class UnitPreProcess:
         sp2.display()
         plt.tight_layout()
     def savefig(self):
-        plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\前处理\\fig.png',dpi=600)
+        plt.savefig('prefig.png',dpi=600)
         plt.show()
 
-
+'''
 upp=UnitPreProcess(2.5,1.0,4.0,2.2,1,1,1,0,5.0)
 upp.setfig()
 upp.plot()
 upp.savefig()     
-       
+'''
 
 '''
 问题：
