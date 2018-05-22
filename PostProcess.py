@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 22 16:04:54 2018
-
-@author: Nicole
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 import UnitPostProcess
@@ -37,5 +30,3 @@ class PostProcess:
             upp.plot()
     def savefig(self):
         plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\后处理\\fig.png',dpi=600)
-
-
