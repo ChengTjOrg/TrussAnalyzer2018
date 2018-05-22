@@ -1,17 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 22 16:08:18 2018
-
-@author: Nicole
-"""
-
-
-#pre display in unit
-
-#import numpy as np
 from __future__ import division
 import matplotlib.pyplot as plt
-#import pylab as plb
 import Support
 
 class UnitPreProcess:
@@ -50,17 +38,3 @@ class UnitPreProcess:
     def savefig(self):
         plt.savefig('prefig.png',dpi=600)
         plt.show()
-
-'''
-upp=UnitPreProcess(2.5,1.0,4.0,2.2,1,1,1,0,5.0)
-upp.setfig()
-upp.plot()
-upp.savefig()     
-'''
-
-'''
-问题：
-1.程序中有大段重复的相似语句，不知道有没有办法优化
-2.注释还没有认真写好
-3.支座的方向是单一的，可能会出现重叠遮挡的问题，目前暂时采用了不同颜色作为解决方案，但是这个方案还不够好
-'''
