@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 15 21:57:30 2018
-
-@author: Nicole
-"""
-
 import matplotlib.pyplot as plt
 
 class Support:
@@ -43,4 +36,3 @@ class Support:
         self.xswitcher.get(self.sx)(self)
         self.yswitcher={0:Support.none,1:Support.vertical}
         self.yswitcher.get(self.sy)(self)
-    '''要注意支座图像的放置方向和大小不要与杆件重叠!!'''
