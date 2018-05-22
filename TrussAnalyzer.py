@@ -17,12 +17,12 @@ class TrussAnalyzer(wx.Frame):   #主界面
                 self.panel.SetBackgroundColour("White")
                 self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
                 
+                menu = wx.Menu()
+                help = menu.Append(wx.NewId(), "Help")
+                self.Bind(wx.EVT_MENU, self.Onhelp, help)
                 menuBar = wx.MenuBar()
-                menu2 = wx.Menu()
-                menu2.Append(wx.NewId(), " help ")
-                menuBar.Append(menu2, " MENU ")
-                self.SetMenuBar(menuBar)  
-
+                menuBar.Append(menu, " Menu ")
+                self.SetMenuBar(menuBar)
                 
                 constraint_s = wx.StaticText(self.panel, wx.NewId(), "constraint?",pos=(350, 20))
                 constraint_s.SetBackgroundColour("White")
@@ -129,6 +129,9 @@ class TrussAnalyzer(wx.Frame):   #主界面
                 
         def OnCloseWindow(self,event):    #关闭窗口
             self.Destroy()
+        def Onhelp(self,event):
+            frame = Help(parent=None, id=-1)
+            frame.Show()
         def OnSave(self,event):         #保存杆件
             numbers = [0,self.xpos1.GetValue(),self.ypos1.GetValue(),int(self.xconstraint1.GetValue()),
                        int(self.yconstraint1.GetValue()),self.xforce1.GetValue(),self.yforce1.GetValue(),
@@ -221,7 +224,7 @@ class TrussAnalyzer(wx.Frame):   #主界面
         def Leave(self,event):
             self.statusbar.SetStatusText("")
         def OnShow(self):
-            Ana.fig2()
+            Ana.fig()
             image = wx.Image('fig.PNG', wx.BITMAP_TYPE_PNG)
             temp = image.ConvertToBitmap()
             w = temp.GetWidth()
@@ -261,6 +264,31 @@ class Result(wx.Frame):      #结果显示界面
             self.bmp = wx.StaticBitmap(panel,-1,temp,pos=(0, 0),size=size)  
         
         def OnCloseWindow(self,event):    #关闭窗口
+            self.Destroy()
+            
+class Help(wx.Frame):      #帮助界面
+
+        def __init__(self, parent, id):    
+            wx.Frame.__init__(self, parent, id, 'Help',size=(300,320))
+            panel = wx.Panel(self, -1)
+            panel.SetBackgroundColour("White")
+            wx.StaticText(panel, -1, "  根据下方状态栏的提示，请在给定空格中\n"
+                                     "分别输入一根杆件的两点坐标，两点的x，\n"
+                                     "y方向上受力情况以及约束情况。输入完毕后\n"
+                                     "按下SAVE键保存所输入的内容。系统将记录\n"
+                                     "你输入的杆件情况并帮你清除已输入的数据\n"
+                                     "以便你输入下一根杆件的情况。你已输入的\n"
+                                     "杆件将在输入区域下方以图片的形式为你展示。\n"
+                                     "当你将所有杆件的情况输入完毕后，按下START\n"
+                                     "按键，将开始进行受力分析。最终将生成一张\n"
+                                     "杆件的受力及位移分析图，以弹窗的形式\n"
+                                     "展现，此图片也能在同一文件夹中找到。\n"
+                                     "注意：在输入一根杆件时你必须把受力和\n"
+                                     "约束完整地输入，即便你可能之前已经输入\n"
+                                     "了一次。（下一版本将得到改进）", (20,20))
+            self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
+        
+        def OnCloseWindow(self,event):    
             self.Destroy()
 
 if __name__ == '__main__':
