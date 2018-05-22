@@ -29,4 +29,4 @@ class PostProcess:
             upp=UnitPostProcess.UnitPostProcess(self.x1[i],self.y1[i],self.x2[i],self.y2[i],self.sx1[i],self.sy1[i],self.sx2[i],self.sy2[i],self.fx1[i],self.fy1[i],self.fx2[i],self.fy2[i],self.l,self.fn[i])
             upp.plot()
     def savefig(self):
-        plt.savefig('C:\\文件\\大二下\\绗架结构分析助手\\图像\\后处理\\fig.png',dpi=600)
+        plt.savefig('fig.png',dpi=600)
