@@ -19,10 +19,10 @@ class Node:
         self.fy=fy
         self.size=size
         self.ax=ax
-        self.c_s=6
-        self.c_lw=0.3
+        self.c_s=24
+        self.c_lw=1.2
     def PlotNode(self):
-        plt.scatter(self.x,self.y,c='w',marker='o', s=self.c_s*self.size,edgecolors='k',linewidths=self.c_lw*self.size, zorder=100)
+        plt.scatter(self.x,self.y,c='w',marker='o', s=self.c_s,edgecolors='k',linewidths=self.c_lw, zorder=100)
     def PlotSupport(self):
         support=Support.Support(self.x,self.y,self.support_x,self.support_y,self.size)
         support.Plot()

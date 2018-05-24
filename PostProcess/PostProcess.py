@@ -23,5 +23,5 @@ def UncalculatedPostProcess(path):
     data.UncalculatedPlot()
     data.UncalculatedSaveFig()
     
-#CalculatedPostProcess('输出.txt')
-UncalculatedPostProcess('temp.txt')
+CalculatedPostProcess('输出.txt')
+UncalculatedPostProcess('temp(6).txt')

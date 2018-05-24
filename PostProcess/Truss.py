@@ -33,9 +33,9 @@ class Truss:
         self.node1.PlotNode()
         self.node1.PlotSupport()
         self.node1.PlotForce()
-        self.node1.PlotNode()
-        self.node1.PlotSupport()
-        self.node1.PlotForce()
+        self.node2.PlotNode()
+        self.node2.PlotSupport()
+        self.node2.PlotForce()
         self.rod.PlotRod()
     def SaveTrussFig(self):
         plt.savefig('truss.png',dpi=600)
