@@ -4,12 +4,12 @@
 """
 
 import wx
-import preprocess as pp
+import PreProcess as pp
 import analyzer as ana
-import Analyze as Ana
+import PostProcess as post
 import numpy
 
-class TrussAnalyzer(wx.Frame):   #主界面
+class TrussAnalyzer(wx.Frame):                        #主界面
 
         def __init__(self, parent, id):
                 wx.Frame.__init__(self, parent, id, 'TrussAnalyzer',size=(500, 700))
@@ -18,10 +18,17 @@ class TrussAnalyzer(wx.Frame):   #主界面
                 self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
                 
                 menu = wx.Menu()
-                help = menu.Append(wx.NewId(), "Help")
-                self.Bind(wx.EVT_MENU, self.Onhelp, help)
+                menu.AppendSeparator()
+                exit = menu.Append(-1, "Exit")
+                self.Bind(wx.EVT_MENU, self.OnExit, exit)
+                helpmenu = wx.Menu()
+                help = helpmenu.Append(wx.NewId(), "Help")
+                self.Bind(wx.EVT_MENU, self.OnHelp, help)
+                about = helpmenu.Append(wx.NewId(), "About")
+                self.Bind(wx.EVT_MENU, self.OnAbout, about)
                 menuBar = wx.MenuBar()
                 menuBar.Append(menu, " Menu ")
+                menuBar.Append(helpmenu, " Help ")
                 self.SetMenuBar(menuBar)
                 
                 constraint_s = wx.StaticText(self.panel, wx.NewId(), "constraint?",pos=(350, 20))
@@ -123,16 +130,20 @@ class TrussAnalyzer(wx.Frame):   #主界面
                 
                 self.statusbar = self.CreateStatusBar() 
                 
-                f = open('temp.txt','w')     #覆盖原文件内容
+                f = open('temp.txt','w')              #覆盖原文件内容
                 f.close()
-
                 
-        def OnCloseWindow(self,event):    #关闭窗口
+        def OnCloseWindow(self,event):                #关闭窗口
             self.Destroy()
-        def Onhelp(self,event):
+        def OnHelp(self,event):
             frame = Help(parent=None, id=-1)
             frame.Show()
-        def OnSave(self,event):         #保存杆件
+        def OnAbout(self,event):
+            frame = About(parent=None, id=-1)
+            frame.Show()
+        def OnExit(self,event):
+            self.Close()
+        def OnSave(self,event):                       #保存杆件
             numbers = [0,self.xpos1.GetValue(),self.ypos1.GetValue(),int(self.xconstraint1.GetValue()),
                        int(self.yconstraint1.GetValue()),self.xforce1.GetValue(),self.yforce1.GetValue(),
                        0,self.xpos2.GetValue(),self.ypos2.GetValue(),int(self.xconstraint2.GetValue()),
@@ -145,16 +156,18 @@ class TrussAnalyzer(wx.Frame):   #主界面
             f.write('\n')
             f.close()
             self.OnReset()
-            f = open('temp.txt','r')
+            '''
             number = numpy.loadtxt('temp.txt') 
-            f.close()
             a = number.ndim
             if a==1:
                 pass
             else:
                 self.OnShow()
+            '''
             self.OnSuccess()
-        def OnClear(self,event):     #清除输入内容
+        def OnClear(self,event):                      #清除输入内容
+            self.OnReset()
+        def OnReset(self):                            #清除输入内容
             self.xpos1.SetValue("")
             self.ypos1.SetValue("")
             self.xpos2.SetValue("")
@@ -168,28 +181,11 @@ class TrussAnalyzer(wx.Frame):   #主界面
             self.yconstraint1.SetValue(0)
             self.xconstraint2.SetValue(0)
             self.yconstraint2.SetValue(0)
-        def OnReset(self):         #清除输入内容
-            self.xpos1.SetValue("")
-            self.ypos1.SetValue("")
-            self.xpos2.SetValue("")
-            self.ypos2.SetValue("")
-            self.ea.SetValue("")
-            self.xforce1.SetValue("0")
-            self.yforce1.SetValue("0")
-            self.xforce2.SetValue("0")
-            self.yforce2.SetValue("0")
-            self.xconstraint1.SetValue(0)
-            self.yconstraint1.SetValue(0)
-            self.xconstraint2.SetValue(0)
-            self.yconstraint2.SetValue(0)
-        def OnSuccess(self):      #弹出成功窗口
+        def OnSuccess(self):                          #弹出成功窗口
             dlg = wx.MessageDialog(None, "Success!",'Success',wx.OK)
             dlg.ShowModal()
             dlg.Destroy()
-        def OnMove(self, event):
-            pos = event.GetPosition()
-            self.posCtrl.SetValue("%s, %s" % (pos.x, pos.y))
-        def xpos1help(self,event):      #状态栏帮助界面
+        def xpos1help(self,event):                    #状态栏帮助界面
             self.statusbar.SetStatusText("请在此输入杆件其中一节点的x坐标（暂记为节点1）")
         def ypos1help(self,event):
             self.statusbar.SetStatusText("请在此输入杆件其中一节点的y坐标（暂记为节点1）")
@@ -223,8 +219,8 @@ class TrussAnalyzer(wx.Frame):   #主界面
             self.statusbar.SetStatusText("启动计算程序，生成杆件图并标明受力及位移状态")
         def Leave(self,event):
             self.statusbar.SetStatusText("")
-        def OnShow(self):
-            Ana.fig()
+        def OnShow(self):                             #结构图片实时显示
+            post.UncalculatedPostProcess()
             image = wx.Image('fig.PNG', wx.BITMAP_TYPE_PNG)
             temp = image.ConvertToBitmap()
             w = temp.GetWidth()
@@ -234,39 +230,37 @@ class TrussAnalyzer(wx.Frame):   #主界面
             temp=temp.ConvertToImage().Scale(w,h)
             temp=temp.ConvertToBitmap()
             size = (w,h)
-            print(size)
             self.bmp = wx.StaticBitmap(self.panel,-1,temp,pos=(0, 250),size=size)
             self.panel.Refresh()
-        def OnStart(self,event):    #主程序启动
+        def OnStart(self,event):                      #主程序启动
             pp.preprocess()
             ana.analyzer()
-            Ana.fig()
+            post.CalculatedPostProcess()
             frame = Result(parent=None, id=-1)
             frame.Show()
             
-class Result(wx.Frame):      #结果显示界面
+class Result(wx.Frame):                               #最终结果显示界面
 
-        def __init__(self, parent, id):    #图片显示
+        def __init__(self, parent, id):               #图片显示
             image = wx.Image('fig.PNG', wx.BITMAP_TYPE_PNG)
             temp = image.ConvertToBitmap()
             w = temp.GetWidth()
             h = temp.GetHeight()
-            w = w/10
-            h = h/10
+            w = w/5
+            h = h/5
             temp=temp.ConvertToImage().Scale(w,h)
             temp=temp.ConvertToBitmap()
             size = (w,h)
-            print(size)
-            wx.Frame.__init__(self, parent, id, 'Result',size=(w,h*1.1))
+            wx.Frame.__init__(self, parent, id, 'Result',size=(w,h*1.2))
             panel = wx.Panel(self, -1)
             panel.SetBackgroundColour("White")
             self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
             self.bmp = wx.StaticBitmap(panel,-1,temp,pos=(0, 0),size=size)  
-        
-        def OnCloseWindow(self,event):    #关闭窗口
+            
+        def OnCloseWindow(self,event):                #关闭窗口
             self.Destroy()
             
-class Help(wx.Frame):      #帮助界面
+class Help(wx.Frame):                                 #帮助界面
 
         def __init__(self, parent, id):    
             wx.Frame.__init__(self, parent, id, 'Help',size=(300,320))
@@ -288,7 +282,23 @@ class Help(wx.Frame):      #帮助界面
                                      "了一次。（下一版本将得到改进）", (20,20))
             self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
         
-        def OnCloseWindow(self,event):    
+        def OnCloseWindow(self,event):                #关闭窗口
+            self.Destroy()
+            
+class About(wx.Frame):                                 #帮助界面
+
+        def __init__(self, parent, id):    
+            wx.Frame.__init__(self, parent, id, 'About',size=(450,320))
+            panel = wx.Panel(self, -1)
+            panel.SetBackgroundColour("White")
+            name = wx.StaticText(panel, -1, "TrussAnalyzer 1.0", (100, 50), (160, -1), wx.ALIGN_CENTER)
+            font = wx.Font(18, wx.DECORATIVE, wx.ITALIC, wx.NORMAL)
+            name.SetFont(font)
+            wx.StaticText(panel, -1, "Author: 2Fzzzzz, Nicole and Zeyu XU", (100, 100))
+            wx.StaticText(panel, -1, "Special Thanks: Chengwei", (100, 120))
+            self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
+        
+        def OnCloseWindow(self,event):                #关闭窗口
             self.Destroy()
 
 if __name__ == '__main__':
