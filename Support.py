@@ -16,29 +16,29 @@ class Support:
         self.size=size
         self.c1=1/15#支座长短系数1
         self.c2=1/24#支座长短系数2（大地）
-        self.c3=5#点大小系数
-        self.c_plw=0.25#点线宽系数
-        self.c_lw=0.25#线宽系数
+        self.c3=20#点大小系数
+        self.c_plw=1#点线宽系数
+        self.c_lw=1#线宽系数
     def NoneSupport(self):
         pass
     def Horizontal(self):
         #仅有水平支座，向左画
         xList1=[self.x,self.x-self.c1*self.size]
         yList1=[self.y,self.y]
-        plt.scatter(xList1[1],yList1[1],c='w',marker='o',s=self.c3*self.size,edgecolors='b',linewidths=self.c_plw*self.size,zorder=100)
-        plt.plot(xList1,yList1,c='b',linewidth=self.c_lw*self.size,zorder=1)
+        plt.scatter(xList1[1],yList1[1],c='w',marker='o',s=self.c3,edgecolors='b',linewidths=self.c_plw,zorder=100)
+        plt.plot(xList1,yList1,c='b',linewidth=self.c_lw,zorder=50)
         xList2=[self.x-self.c1*self.size,self.x-self.c1*self.size]
         yList2=[self.y+self.c2*self.size,self.y-self.c2*self.size]
-        plt.plot(xList2,yList2,c='b',linewidth=self.c_lw*self.size,zorder=1)
+        plt.plot(xList2,yList2,c='b',linewidth=self.c_lw,zorder=50)
     def Vertical(self):
         #仅有竖直支座，向下画
         xList1=[self.x,self.x]
         yList1=[self.y,self.y-self.c1*self.size]
-        plt.scatter(xList1[1],yList1[1],c='w',marker='o',s=self.c3*self.size,edgecolors='b',linewidths=self.c_plw*self.size,zorder=100)
-        plt.plot(xList1,yList1,c='b',linewidth=self.c_lw*self.size,zorder=1)
+        plt.scatter(xList1[1],yList1[1],c='w',marker='o',s=self.c3,edgecolors='b',linewidths=self.c_plw,zorder=100)
+        plt.plot(xList1,yList1,c='b',linewidth=self.c_lw,zorder=50)
         xList2=[self.x-self.c2*self.size,self.x+self.c2*self.size]
         yList2=[self.y-self.c1*self.size,self.y-self.c1*self.size]
-        plt.plot(xList2,yList2,c='b',linewidth=self.c_lw*self.size,zorder=1)
+        plt.plot(xList2,yList2,c='b',linewidth=self.c_lw,zorder=50)
     def Plot(self):
         self.xswitcher={0:Support.NoneSupport,1:Support.Horizontal}
         self.xswitcher.get(self.support_x)(self)

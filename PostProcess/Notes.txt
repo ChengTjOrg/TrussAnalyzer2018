@@ -1,6 +1,0 @@
-PostProcess为显示需要调用的两个函数（计算前UncalculatedPostProcess/计算后CalculatedPostProcess）
-这两个函数分别要调用类Uncalculated/Calculated
-这两个类均要调用Truss和Node（事实上本来只需调用Truss，因为Truss具备全部的画图功能。但是Node可以将一些数据打包，
-                          Truss虽然也可以打包数据但是它需要Node类型的参数，为了看起来简洁这里也调用了Node）
-Truss由Node（节点）和Rod（杆）组成，其中Rod的组成元素中也有Node
-Node除了端点还包括支座Support和力Force

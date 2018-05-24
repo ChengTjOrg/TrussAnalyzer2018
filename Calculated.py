@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu May 24 20:04:14 2018
-
 @author: Nicole
 """
 
@@ -11,7 +10,8 @@ import Truss
 import Node
 
 class Calculated:
-    def __init__(self):
+    def __init__(self,path):
+        self.path=str(path)
         self.size=0
         self.x_min=self.y_min=self.x_max=self.y_max=0
     def SetFig(self):
@@ -21,9 +21,9 @@ class Calculated:
         self.ax.set_aspect(1)
         fig.tight_layout()
     def CalculatedLoadData(self):
-        (node1_x,node1_y,node1_support_x,node1_support_y,node1_fx,node1_fy)=np.loadtxt('temp.txt',skiprows=0,delimiter=' ',dtype=float,usecols=(1,2,3,4,5,6),unpack=True)
-        (node2_x,node2_y,node2_support_x,node2_support_y,node2_fx,node2_fy)=np.loadtxt('temp.txt',skiprows=0,delimiter=' ',dtype=float,usecols=(8,9,10,11,12,13),unpack=True)
-        (result,node1_dx,node1_dy,node2_dx,node2_dy)=np.loadtxt('temp.txt',skiprows=0,delimiter=' ',dtype=float,usecols=(15,16,17,18,19),unpack=True)
+        (node1_x,node1_y,node1_support_x,node1_support_y,node1_fx,node1_fy)=np.loadtxt(self.path,skiprows=0,delimiter=' ',dtype=float,usecols=(1,2,3,4,5,6),unpack=True)
+        (node2_x,node2_y,node2_support_x,node2_support_y,node2_fx,node2_fy)=np.loadtxt(self.path,skiprows=0,delimiter=' ',dtype=float,usecols=(8,9,10,11,12,13),unpack=True)
+        (result,node1_dx,node1_dy,node2_dx,node2_dy)=np.loadtxt(self.path,skiprows=0,delimiter=' ',dtype=float,usecols=(15,16,17,18,19),unpack=True)
         self.node1_x=list(node1_x+node1_dx)
         self.node1_y=list(node1_y+node1_dy)
         self.node1_support_x=list(node1_support_x)

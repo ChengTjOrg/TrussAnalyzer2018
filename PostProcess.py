@@ -9,15 +9,15 @@ Created on Tue May 22 16:06:49 2018
 import Calculated
 import Uncalculated
 
-def CalculatedPostProcess():
-    data=Calculated.Calculated()
+def CalculatedPostProcess(path):
+    data=Calculated.Calculated(path)
     data.SetFig()
     data.CalculatedLoadData()
     data.CalculatedPlot()
     data.CalculatedSaveFig()
 
-def UncalculatedPostProcess():
-    data=Uncalculated.Uncalculated()
+def UncalculatedPostProcess(path):
+    data=Uncalculated.Uncalculated(path)
     data.SetFig()
     data.UncalculatedLoadData()
     data.UncalculatedPlot()

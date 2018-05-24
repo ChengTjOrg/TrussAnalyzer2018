@@ -36,5 +36,5 @@ class UnitPreProcess:
         sp2.display()
         plt.tight_layout()
     def savefig(self):
-        plt.savefig('prefig.png',dpi=600)
+        plt.savefig('fig.png',dpi=600)
         plt.show()

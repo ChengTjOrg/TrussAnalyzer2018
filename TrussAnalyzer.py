@@ -7,7 +7,6 @@ import wx
 import PreProcess as pp
 import Analyzer as ana
 import PostProcess as post
-import numpy
 
 class TrussAnalyzer(wx.Frame):                        #主界面
 
@@ -156,14 +155,7 @@ class TrussAnalyzer(wx.Frame):                        #主界面
             f.write('\n')
             f.close()
             self.OnReset()
-            '''
-            number = numpy.loadtxt('temp.txt') 
-            a = number.ndim
-            if a==1:
-                pass
-            else:
-                self.OnShow()
-            '''
+            self.OnShow()
             self.OnSuccess()
         def OnClear(self,event):                      #清除输入内容
             self.OnReset()
@@ -220,7 +212,7 @@ class TrussAnalyzer(wx.Frame):                        #主界面
         def Leave(self,event):
             self.statusbar.SetStatusText("")
         def OnShow(self):                             #结构图片实时显示
-            post.UncalculatedPostProcess()
+            post.UncalculatedPostProcess('temp.txt')
             image = wx.Image('fig.PNG', wx.BITMAP_TYPE_PNG)
             temp = image.ConvertToBitmap()
             w = temp.GetWidth()
@@ -235,7 +227,7 @@ class TrussAnalyzer(wx.Frame):                        #主界面
         def OnStart(self,event):                      #主程序启动
             pp.preprocess()
             ana.analyzer()
-            post.CalculatedPostProcess()
+            post.CalculatedPostProcess('temp.txt')
             frame = Result(parent=None, id=-1)
             frame.Show()
             
