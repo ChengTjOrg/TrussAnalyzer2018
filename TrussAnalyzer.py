@@ -5,7 +5,7 @@
 
 import wx
 import PreProcess as pp
-import analyzer as ana
+import Analyzer as ana
 import PostProcess as post
 import numpy
 
