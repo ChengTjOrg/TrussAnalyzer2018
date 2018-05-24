@@ -1,40 +1,46 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue May 15 21:57:30 2018
+
+@author: Nicole
+"""
+
 import matplotlib.pyplot as plt
 
 class Support:
-    def __init__(self,sx,sy,a,b,l,sc):
-        self.sx=int(sx)
-        self.sy=int(sy)
-        self.a=a
-        self.b=b
-        self.l=l
+    def __init__(self,x,y,support_x,support_y,size):
+        self.x=x
+        self.y=y
+        self.support_x=int(support_x)
+        self.support_y=int(support_y)
+        self.size=size
         self.c1=1/15#支座长短系数1
         self.c2=1/24#支座长短系数2（大地）
         self.c3=5#点大小系数
-        self.c4=0.25#点线宽系数
-        self.c5=0.25#线宽系数
-        self.sc=sc
-    def none(self):
+        self.c_plw=0.25#点线宽系数
+        self.c_lw=0.25#线宽系数
+    def NoneSupport(self):
         pass
-    def horizontal(self):
+    def Horizontal(self):
         #仅有水平支座，向左画
-        x=[self.a,self.a-self.c1*self.l]
-        y=[self.b,self.b]
-        plt.scatter(x[1],y[1],c='w',marker='o',s=self.c3*self.l,edgecolors=self.sc,linewidths=self.c4*self.l,zorder=100)
-        plt.plot(x,y,c=self.sc,linewidth=2.5,zorder=1)
-        x1=[self.a-self.c1*self.l,self.a-self.c1*self.l]
-        y1=[self.b+self.c2*self.l,self.b-self.c2*self.l]
-        plt.plot(x1,y1,c=self.sc,linewidth=self.c5*self.l,zorder=1)
-    def vertical(self):
+        xList1=[self.x,self.x-self.c1*self.size]
+        yList1=[self.y,self.y]
+        plt.scatter(xList1[1],yList1[1],c='w',marker='o',s=self.c3*self.size,edgecolors='b',linewidths=self.c_plw*self.size,zorder=100)
+        plt.plot(xList1,yList1,c='b',linewidth=self.c_lw*self.size,zorder=1)
+        xList2=[self.x-self.c1*self.size,self.x-self.c1*self.size]
+        yList2=[self.y+self.c2*self.size,self.y-self.c2*self.size]
+        plt.plot(xList2,yList2,c='b',linewidth=self.c_lw*self.size,zorder=1)
+    def Vertical(self):
         #仅有竖直支座，向下画
-        x=[self.a,self.a]
-        y=[self.b,self.b-self.c1*self.l]
-        plt.scatter(x[1],y[1],c='w',marker='o',s=self.c3*self.l,edgecolors=self.sc,linewidths=self.c4*self.l,zorder=100)
-        plt.plot(x,y,c=self.sc,linewidth=2.5,zorder=1)
-        x1=[self.a-self.c2*self.l,self.a+self.c2*self.l]
-        y1=[self.b-self.c1*self.l,self.b-self.c1*self.l]
-        plt.plot(x1,y1,c=self.sc,linewidth=self.c5*self.l,zorder=1)
-    def display(self):
-        self.xswitcher={0:Support.none,1:Support.horizontal}
-        self.xswitcher.get(self.sx)(self)
-        self.yswitcher={0:Support.none,1:Support.vertical}
-        self.yswitcher.get(self.sy)(self)
+        xList1=[self.x,self.x]
+        yList1=[self.y,self.y-self.c1*self.size]
+        plt.scatter(xList1[1],yList1[1],c='w',marker='o',s=self.c3*self.size,edgecolors='b',linewidths=self.c_plw*self.size,zorder=100)
+        plt.plot(xList1,yList1,c='b',linewidth=self.c_lw*self.size,zorder=1)
+        xList2=[self.x-self.c2*self.size,self.x+self.c2*self.size]
+        yList2=[self.y-self.c1*self.size,self.y-self.c1*self.size]
+        plt.plot(xList2,yList2,c='b',linewidth=self.c_lw*self.size,zorder=1)
+    def Plot(self):
+        self.xswitcher={0:Support.NoneSupport,1:Support.Horizontal}
+        self.xswitcher.get(self.support_x)(self)
+        self.yswitcher={0:Support.NoneSupport,1:Support.Vertical}
+        self.yswitcher.get(self.support_y)(self)
