@@ -48,13 +48,13 @@ class Calculated:
             if min(self.node1_y[i],self.node2_y[i]):
                 self.y_min=min(self.node1_y[i],self.node2_y[i])
             self.size=max(self.x_max-self.x_min,self.y_max-self.y_min)    
-        plt.scatter(self.size,self.size,c='w',marker='o', s=6*self.size,edgecolors='w',linewidths=0.3*self.size, zorder=0.5)      #通过画白色点的方式微调画布尺寸使边角上的力能显示在画布范围内
+        plt.scatter(1.2*self.size,1.2*self.size,c='w',marker='o', s=6*self.size,edgecolors='w',linewidths=0.3*self.size, zorder=0.5)      #通过画白色点的方式微调画布尺寸使边角上的力能显示在画布范围内
+        plt.scatter(1.2*self.x_min-0.2*self.size,1.2*self.y_min-0.2*self.size,c='w',marker='o', s=6*self.size,edgecolors='w',linewidths=0.3*self.size, zorder=0.5)      #通过画白色点的方式微调画布尺寸使边角上的力能显示在画布范围内
         for i in range(len(self.result)):
             self.node1=Node.Node(self.node1_x[i],self.node1_y[i],self.node1_support_x[i],self.node1_support_y[i],self.node1_fx[i],self.node1_fy[i],self.size,self.ax)
             self.node2=Node.Node(self.node2_x[i],self.node2_y[i],self.node2_support_x[i],self.node2_support_y[i],self.node2_fx[i],self.node2_fy[i],self.size,self.ax)
             self.truss=Truss.Truss(self.node1,self.node2,self.size,self.result[i],self.ax)
             self.truss.size=self.size
             self.truss.PlotCalculatedTruss()
-            plt.scatter(self.size,self.size,c='w',marker='o', s=6*self.size,edgecolors='w',linewidths=0.3*self.size, zorder=0.5)      #通过画白色点的方式微调画布尺寸使边角上的力能显示在画布范围内
     def CalculatedSaveFig(self):
         plt.savefig('Calculated.png',dpi=600)
